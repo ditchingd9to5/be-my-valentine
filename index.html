@@ -2,16 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine 💘</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+  <title>Peechuuu 💖 Danger</title>
 
+  <style>
     body {
       margin: 0;
       height: 100vh;
-      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ff6f91, #ff9a9e);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -19,118 +16,145 @@
       overflow: hidden;
     }
 
-    .container {
-      text-align: center;
+    .box {
       background: white;
       padding: 40px;
       border-radius: 25px;
-      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
       animation: pop 0.8s ease;
     }
 
     @keyframes pop {
-      0% { transform: scale(0.6); opacity: 0; }
+      0% { transform: scale(0.5); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
 
     h1 {
       color: #ff3366;
-      font-size: 2.4rem;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
     }
 
     p {
       font-size: 1.2rem;
-      margin: 15px 0 30px;
+      margin-bottom: 25px;
     }
 
-    .buttons {
+    .btns {
       position: relative;
-      height: 80px;
+      height: 100px;
     }
 
     button {
+      padding: 12px 30px;
       font-size: 1.1rem;
-      padding: 12px 28px;
       border-radius: 30px;
       border: none;
       cursor: pointer;
       position: absolute;
-      transition: transform 0.2s;
+      transition: all 0.3s ease;
     }
 
     .yes {
       background: #ff3366;
       color: white;
-      left: 20%;
+      left: 15%;
     }
 
     .no {
       background: #eee;
-      color: #555;
-      right: 20%;
+      color: #444;
+      right: 15%;
     }
 
-    .tease {
+    .msg {
       margin-top: 25px;
       font-size: 1rem;
-      color: #555;
+      color: #666;
       min-height: 24px;
+    }
+
+    .tap {
+      margin-top: 15px;
+      font-size: 0.9rem;
+      color: #999;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Waittt 😳</h1>
-    <p>Will you be my Valentine? 💖</p>
+  <!-- 🎵 Cute Romantic Music -->
+  <audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+  </audio>
 
-    <div class="buttons">
-      <button class="yes" onclick="sayYes()">YES 💘</button>
-      <button class="no" onmouseover="runAway()" onclick="runAway()">NO 😜</button>
+  <div class="box" onclick="playMusic()">
+    <h1>Peechuuu ❤️</h1>
+    <p>
+      Will you be <strong>Danger</strong>'s Valentine? 💘🥹
+    </p>
+
+    <div class="btns">
+      <button class="yes" onclick="yesClick()">YES 💖</button>
+      <button class="no" onmouseover="noRun()" onclick="noRun()">NO 🙈</button>
     </div>
 
-    <div class="tease" id="tease"></div>
+    <div class="msg" id="msg"></div>
+    <div class="tap">👆 Tap anywhere to play music</div>
   </div>
 
   <script>
-    const teaseTexts = [
-      "Nice try 😏",
-      "Oops… missed again 😂",
-      "NO is not an option 🙈",
-      "Come on… just say YES 💕",
-      "That button is shy 😜"
+    let yesSize = 1;
+
+    const lines = [
+      "Peechuuu, itna bhaav nahi 😜",
+      "NO button bhi darte hue bhaag raha hai 😂",
+      "YES likha hai destiny mein 💕",
+      "Danger is waiting 😏",
+      "Bas ek YES bol do na 🥹"
     ];
 
-    function runAway() {
+    function noRun() {
       const noBtn = document.querySelector('.no');
-      const tease = document.getElementById('tease');
+      const msg = document.getElementById('msg');
 
       const x = Math.random() * 300 - 150;
       const y = Math.random() * 200 - 100;
 
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      msg.innerText = lines[Math.floor(Math.random() * lines.length)];
 
-      tease.innerText =
-        teaseTexts[Math.floor(Math.random() * teaseTexts.length)];
+      // YES button grows 😈
+      yesSize += 0.1;
+      document.querySelector('.yes').style.transform =
+        `scale(${yesSize})`;
     }
 
-    function sayYes() {
+    function yesClick() {
       document.body.innerHTML = `
         <div style="
-          text-align:center;
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          flex-direction:column;
+          background:linear-gradient(135deg,#ff3366,#ff9a9e);
           color:white;
+          text-align:center;
           font-family:Segoe UI;
-          animation: pop 1s ease;
         ">
-          <h1 style="font-size:3rem;">YAYYY 💖💖💖</h1>
+          <h1 style="font-size:3rem;">YAYYYYY 💖💖💖</h1>
           <p style="font-size:1.4rem;">
-            You just made my day 😘<br>
-            Happy Valentine’s Day 💘
+            Peechuuu said YES 😍<br><br>
+            Forever Peechuuu ❤️ Danger
           </p>
         </div>
       `;
-      document.body.style.background =
-        "linear-gradient(135deg, #ff3366, #ff99aa)";
+    }
+
+    function playMusic() {
+      document.getElementById("music").play();
     }
   </script>
 
