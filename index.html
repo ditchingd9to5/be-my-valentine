@@ -1,21 +1,138 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Be My Valentine 💘</title>
   <style>
-    body {
-      background: pink;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 15%;
+    * {
+      box-sizing: border-box;
     }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+      animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.6); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     h1 {
-      font-size: 3em;
+      color: #ff3366;
+      font-size: 2.4rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 15px 0 30px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s;
+    }
+
+    .yes {
+      background: #ff3366;
+      color: white;
+      left: 20%;
+    }
+
+    .no {
+      background: #eee;
+      color: #555;
+      right: 20%;
+    }
+
+    .tease {
+      margin-top: 25px;
+      font-size: 1rem;
+      color: #555;
+      min-height: 24px;
     }
   </style>
 </head>
 <body>
-  <h1>Will you be my Valentine? 💖</h1>
-  <p>— from someone who commits to you</p>
+
+  <div class="container">
+    <h1>Waittt 😳</h1>
+    <p>Will you be my Valentine? 💖</p>
+
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">YES 💘</button>
+      <button class="no" onmouseover="runAway()" onclick="runAway()">NO 😜</button>
+    </div>
+
+    <div class="tease" id="tease"></div>
+  </div>
+
+  <script>
+    const teaseTexts = [
+      "Nice try 😏",
+      "Oops… missed again 😂",
+      "NO is not an option 🙈",
+      "Come on… just say YES 💕",
+      "That button is shy 😜"
+    ];
+
+    function runAway() {
+      const noBtn = document.querySelector('.no');
+      const tease = document.getElementById('tease');
+
+      const x = Math.random() * 300 - 150;
+      const y = Math.random() * 200 - 100;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+      tease.innerText =
+        teaseTexts[Math.floor(Math.random() * teaseTexts.length)];
+    }
+
+    function sayYes() {
+      document.body.innerHTML = `
+        <div style="
+          text-align:center;
+          color:white;
+          font-family:Segoe UI;
+          animation: pop 1s ease;
+        ">
+          <h1 style="font-size:3rem;">YAYYY 💖💖💖</h1>
+          <p style="font-size:1.4rem;">
+            You just made my day 😘<br>
+            Happy Valentine’s Day 💘
+          </p>
+        </div>
+      `;
+      document.body.style.background =
+        "linear-gradient(135deg, #ff3366, #ff99aa)";
+    }
+  </script>
+
 </body>
 </html>
